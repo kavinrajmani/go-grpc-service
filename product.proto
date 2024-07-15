@@ -1,0 +1,21 @@
+syntax = "proto3"; 
+
+option go_package = "github.com/kavinrajmani/go-grpc-service/product";
+
+message ProductRequest {
+    string name = 1;
+    string description = 2;
+    int32 price = 3;
+    string category = 4;
+}
+
+message ProductResponse {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+}
+
+
+service ProductService {
+    rpc CreateProduct(ProductRequest) returns (ProductResponse);
+}
