@@ -1,0 +1,4 @@
+version: v1
+name: buf.build/kavinrajmani/go-grpc-service
+deps:
+  - buf.build/googleapis/googleapis

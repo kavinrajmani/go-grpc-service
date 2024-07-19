@@ -1,6 +1,6 @@
 syntax = "proto3"; 
-
 option go_package = "github.com/kavinrajmani/go-grpc-service/product";
+import "google/api/annotations.proto";
 
 message ProductRequest {
     string name = 1;
@@ -16,6 +16,11 @@ message ProductResponse {
 }
 
 
-service ProductService {
-    rpc CreateProduct(ProductRequest) returns (ProductResponse);
+service Product {
+    rpc CreateProduct(ProductRequest) returns (ProductResponse){
+        option (google.api.http) = {
+            post: "/product"
+            body: "*"
+        };
+    }
 }
