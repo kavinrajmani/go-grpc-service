@@ -60,15 +60,14 @@ func (c *usersClient) CreateUser(ctx context.Context, in *User, opts ...grpc.Cal
 }
 
 // UsersServer is the server API for Users service.
-// All implementations must embed UnimplementedUsersServer
+// All implementations should embed UnimplementedUsersServer
 // for forward compatibility
 type UsersServer interface {
 	GetUsers(context.Context, *UserRequest) (*UserResponse, error)
 	CreateUser(context.Context, *User) (*CreateResponse, error)
-	mustEmbedUnimplementedUsersServer()
 }
 
-// UnimplementedUsersServer must be embedded to have forward compatible implementations.
+// UnimplementedUsersServer should be embedded to have forward compatible implementations.
 type UnimplementedUsersServer struct {
 }
 
@@ -78,7 +77,6 @@ func (UnimplementedUsersServer) GetUsers(context.Context, *UserRequest) (*UserRe
 func (UnimplementedUsersServer) CreateUser(context.Context, *User) (*CreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
 }
-func (UnimplementedUsersServer) mustEmbedUnimplementedUsersServer() {}
 
 // UnsafeUsersServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to UsersServer will
