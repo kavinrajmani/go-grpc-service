@@ -8,7 +8,7 @@ import (
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/kavinrajmani/go-grpc-service/product"
-	"github.com/kavinrajmani/go-grpc-service/user"
+	"github.com/kavinrajmani/go-grpc-service/users"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
@@ -32,7 +32,7 @@ func CreateHTTPServer() {
 		log.Fatal(err)
 	}
 
-	user.RegisterUserHandler(ctx, mux, conn)
+	err = users.RegisterUsersHandler(ctx, mux, conn)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -63,7 +63,7 @@ func CreateGRPCServer() {
 
 func RegisterHdlr(s *grpc.Server) {
 	proHdlr := product.NewHdlr()
-	userHdlr := user.NewHdlr()
+	userHdlr := users.NewHdlr()
 	product.RegisterProductServer(s, proHdlr)
-	user.RegisterUserServer(s, userHdlr)
+	users.RegisterUsersServer(s, userHdlr)
 }

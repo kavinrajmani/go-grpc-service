@@ -1,0 +1,38 @@
+syntax="proto3";
+package users;
+option go_package = "github.com/kavinrajmani/go-grpc-service/users";
+import "google/api/annotations.proto";
+
+message UserRequest {
+    string id = 1;
+}
+
+message User {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+}
+
+message UserResponse {
+   repeated User users = 1;
+}
+
+message CreateResponse{
+    bool success = 1;
+    string message = 2;
+}
+
+service Users {
+    rpc GetUsers(UserRequest) returns (UserResponse){
+        option(google.api.http) = {
+            get: "/users"
+        };
+    }
+
+    rpc CreateUser(User) returns (CreateResponse){
+        option(google.api.http) = {
+            post: "/users/create"
+            body: "*"
+        };
+    }
+}
