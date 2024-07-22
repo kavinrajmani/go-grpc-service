@@ -1,4 +1,5 @@
 syntax="proto3";
+package user;
 option go_package = "github.com/kavinrajmani/go-grpc-service/user";
 import "google/api/annotations.proto";
 

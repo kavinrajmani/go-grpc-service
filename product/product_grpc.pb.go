@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	Product_CreateProduct_FullMethodName = "/Product/CreateProduct"
+	Product_CreateProduct_FullMethodName = "/product.Product/CreateProduct"
 )
 
 // ProductClient is the client API for Product service.
@@ -95,7 +95,7 @@ func _Product_CreateProduct_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Product_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "Product",
+	ServiceName: "product.Product",
 	HandlerType: (*ProductServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
